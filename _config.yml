@@ -1,10 +1,27 @@
-name: "Eylu"
+# This is the default format.
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+# permalink: /:categories/:year/:month/:day/:title
+permalink: /:categories/:year/:month/:day/:title.html
+include: ['.htaccess']
+exclude: [".rvmrc", "README.md"]
 markdown: redcarpet
-highlighter: pygments
-permalink: :title
-exclude: [README.md, LICENSE, Makefile]
+highlights: pygments
+lsi: false
+timezone: Asia/Shanghai
+safe: false
+host: 0.0.0.0
+detach: true
+paginate: 3
+paginate_path: "/blog/page:num/"
+# auto: true # deprecated
 
-# Information for the Atom feed
-eylu:
-  author: "Wang eylu"
-  email: "eylu@github.com"
+# Themes are encouraged to use these universal variables
+# so be sure to set them if your theme uses them.
+#
+url: http://eylu.github.io/
+title: Mark Down the Knowledge
+about: Looking for ...
+author:
+  name: Wang Eylu
+  email: wangeylu@gmail.com
+  github: eylu
