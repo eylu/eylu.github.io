@@ -5,8 +5,6 @@ keywords: 科学家
 description: 学习学习
 ---
 
-<h2>文章归纳</h2>
-
 <div class="wrap am-cf">
   <nav data-am-widget="menu" class="am-menu  am-menu-default am-fr">
     <a href="javascript: void(0)" class="am-menu-toggle">
@@ -15,7 +13,7 @@ description: 学习学习
     <ul class="am-menu-nav am-avg-sm-3">
       {% for category in site.categories %}
       <li class="am-parent">
-        <a href="?c={{category[0]}}" class="">{{category[0]}}</a>
+        <a href="#{{category[0]}}" class="">{{category[0]}}</a>
       </li>
       {% endfor %}
     </ul>
@@ -23,9 +21,10 @@ description: 学习学习
 </div>
 
 {% for category in site.categories %}
-  <h1>{{category[0]}}</h1>
+  <h2 name="{{category[0]}}">{{category[0]}}</h2>
   {% for node in category[1] %}
     {% if node.title != null %}
+      <ul>
       {% if group == null or group == node.group %}
         {% if page.url == node.url %}
         <li class="active"><a href="{{node.url}}" class="active">{{node.title}}</a></li>
@@ -33,6 +32,7 @@ description: 学习学习
         <li><a href="{{node.url}}">{{node.title}}</a></li>
         {% endif %}
       {% endif %}
+      </ul>
     {% endif %}
   {% endfor %}
 {% endfor %}
