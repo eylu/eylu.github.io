@@ -20,3 +20,5 @@ chkconfig --list
 列出服务和他们对应的端口：
 
 netstat -tulpn
+
+VIM
