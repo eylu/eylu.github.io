@@ -5,3 +5,8 @@ p{
 pre{
   background: #eee;
 }
+.post-list .cat{
+  display: inline-block;
+  width: 5em;
+  text-align: right;
+}

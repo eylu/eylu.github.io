@@ -11,7 +11,7 @@ timezone: Asia/Shanghai
 safe: false
 host: 0.0.0.0
 detach: true
-paginate: 3
+paginate: 20
 paginate_path: "/blog/page:num/"
 # auto: true # deprecated
 
