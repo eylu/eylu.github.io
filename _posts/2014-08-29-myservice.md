@@ -1,8 +1,8 @@
 ---
 layout: default
 title: 我的 Service 示例
-date: 2014-08-24 15:18:00
-category: linux
+date: 2014-08-29 10:38:00
+category: Linux
 ---
 
 service --status-all

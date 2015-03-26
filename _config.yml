@@ -20,6 +20,8 @@ paginate_path: "/blog/page:num/"
 #
 url: http://eylu.github.io/
 title: Mark Down the Knowledge
+keywords: 科学家，CSS，JS，*nix，Ruby，PHP
+description: 在学习，在成长，在路上
 about: Looking for ...
 author:
   name: Wang Eylu
