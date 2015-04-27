@@ -44,7 +44,7 @@ require "./bpi/tool.php";
 namespace Api;
 class Tool{
   function hello(){
-    echo "api file, Tool hello()";
+    echo "<br>api file, Tool hello()<br>";
   }
 }
 
@@ -53,7 +53,7 @@ class Tool{
 namespace Bpi;
 class Tool{
   function hello(){
-    echo "bpi file, Tool hello()";
+    echo "<br>bpi file, Tool hello()<br>";
   }
 }
 
