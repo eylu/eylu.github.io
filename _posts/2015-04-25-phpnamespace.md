@@ -17,11 +17,17 @@ category: php
 /webpath/api/Tool.php 文件
 
 class Tool{
+  function hello(){
+    echo "api file, Tool hello()";
+  }
 }
 
 /webpath/bpi/Tool.php 文件
 
 class Tool{
+  function hello(){
+    echo "bpi file, Tool hello()";
+  }
 }
 
 /webpath/test.php 文件
@@ -37,17 +43,59 @@ require "./bpi/tool.php";
 
 namespace Api;
 class Tool{
+  function hello(){
+    echo "api file, Tool hello()";
+  }
 }
 
 /webpath/bpi/Tool.php 文件
 
 namespace Bpi;
 class Tool{
+  function hello(){
+    echo "bpi file, Tool hello()";
+  }
 }
 
 /webpath/test.php 文件
 
 require "./api/tool.php";
 require "./bpi/tool.php";
+
+$tool_a = new Api\Tool();
+$tool_b = new Bpi\Tool();
+
+$tool_a->hello(); // 输出 api file, Tool hello()
+$tool_b->hello(); // 输出 bpi file, Tool hello()
 ```
 
+而且，我们通常把文件夹的名字或者目录名作为 namespace 的名称，这样更有助于我们查看和管理。
+
+有时候，我们会使用 use..as 给命名空间起一个简短的别名。
+
+```
+/webpath/api/db/mysql.php 文件
+
+namespace Api\Db;
+class Mysql{
+  function name($str = ''){
+    echo "<br>Class Api\Db\Mysql name() -> Hello $str !<br>";
+  }
+}
+
+/webpath/test2.php 文件
+
+require "./api/db/mysql.php";
+
+use Api\Db\Mysql;
+use Api\Db as AD;
+use Api\Db\Mysql as ADM;
+
+$db = new Api\Db\Mysql();
+$db2 = new AD\Mysql();
+$db3 = new ADM();
+
+echo $db->name('world');  // 输出 Class Api\Db\Mysql name() -> Hello world !
+echo $db2->name('world 2');  // 输出 Class Api\Db\Mysql name() -> Hello world 2!
+echo $db3->name('world 3')  // 输出 Class Api\Db\Mysql name() -> Hello world 3!
+```
