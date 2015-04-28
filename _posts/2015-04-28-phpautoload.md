@@ -9,11 +9,11 @@ category: php
 
 做 php 项目时，把功能模块化之后，清晰怡人。但是，每次使用模块功能时，总要在文件开头 require 或 include 一些文件，总感觉这样不太好，一定会有办法解决这个问题的。
 
-## __autoload() 与 spl_autoload_register
+## \__autoload() 与 spl\_autoload\_register
 
-php5 加入自动加载 [__autoload()](http://php.net/manual/zh/language.oop5.autoload.php) 方法，它会在试图使用尚未被定义的类时自动调用。通过调用此函数，脚本引擎在 PHP 出错失败前有了最后一个机会加载所需的类。但是不建议使用，因为只能定义一次。
+php5 加入自动加载 [\__autoload()](http://php.net/manual/zh/language.oop5.autoload.php) 方法，它会在试图使用尚未被定义的类时自动调用。通过调用此函数，脚本引擎在 PHP 出错失败前有了最后一个机会加载所需的类。但是不建议使用，因为只能定义一次。
 
-[spl_autoload_register()](http://php.net/manual/zh/function.spl-autoload-register.php) 将函数注册到SPL __autoload函数队列中。如果该队列中的函数尚未激活，则激活它们。
+[spl\_autoload\_register()](http://php.net/manual/zh/function.spl-autoload-register.php) 将函数注册到SPL __autoload函数队列中。如果该队列中的函数尚未激活，则激活它们。
 
 ## spl_autoload_register 介绍
 
@@ -23,9 +23,9 @@ spl_autoload_register($function_name, bool $throw = true, bool $prepend = false)
 
 $function_name 方法名称: 欲注册的自动装载函数。如果没有提供任何参数，则自动注册 autoload 的默认实现函数spl_autoload()。
 
-$throw 是否抛出异常: 此参数设置了 $function_name 无法成功注册时， spl_autoload_register()是否抛出异常。
+$throw 是否抛出异常: 此参数设置了 $function\_name 无法成功注册时， spl\_autoload\_register()是否抛出异常。
 
-$prepend 是否加入队列之首: 如果是 true，spl_autoload_register() 会添加函数到队列之首，而不是队列尾部。
+$prepend 是否加入队列之首: 如果是 true，spl\_autoload\_register() 会添加函数到队列之首，而不是队列尾部。
 
 $throw $prepend 作为可选参数，是可以省略的。
 
