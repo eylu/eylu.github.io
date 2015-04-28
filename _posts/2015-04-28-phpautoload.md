@@ -29,7 +29,7 @@ $prepend 是否加入队列之首: 如果是 true，spl\_autoload\_register() �
 
 $throw $prepend 作为可选参数，是可以省略的。
 
-## spl_autoload_register 示例1
+## spl\_autoload\_register 示例1
 
 ```
 /webpath/classa.php 文件
@@ -74,7 +74,7 @@ $a = new ClassA(); // 这里的类名要与文件名相同，输出正常
 $b = new ClassB(); // 这里的类名要与文件名相同，输出正常
 ```
 
-## spl_autoload_register 示例2
+## spl\_autoload\_register 示例2
 
 这次，我们把 spl\_autoload\_register 提到另外的文件去，让每个文件的功能更独立。
 
