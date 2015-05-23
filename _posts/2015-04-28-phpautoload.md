@@ -15,13 +15,13 @@ php5 加入自动加载 [\__autoload()](http://php.net/manual/zh/language.oop5.a
 
 [spl\_autoload\_register()](http://php.net/manual/zh/function.spl-autoload-register.php) 将函数注册到SPL __autoload函数队列中。如果该队列中的函数尚未激活，则激活它们。
 
-## spl_autoload_register 介绍
+## spl\_autoload\_register 介绍
 
 ```
 spl_autoload_register($function_name, bool $throw = true, bool $prepend = false)
 ```
 
-$function_name 方法名称: 欲注册的自动装载函数。如果没有提供任何参数，则自动注册 autoload 的默认实现函数spl\_autoload()。
+$function\_name 方法名称: 欲注册的自动装载函数。如果没有提供任何参数，则自动注册 autoload 的默认实现函数spl\_autoload()。
 
 $throw 是否抛出异常: 此参数设置了 $function\_name 无法成功注册时， spl\_autoload\_register()是否抛出异常。
 
