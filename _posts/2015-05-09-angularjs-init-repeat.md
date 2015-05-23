@@ -52,7 +52,7 @@ category: JS
       <pre>list=\{\{list\}\}</pre>
       <ol>
         <li ng-repeat="item in list">
-          \{\{item\}\}
+          \{{item\}}
         </li>
       </ol>
     </div>
