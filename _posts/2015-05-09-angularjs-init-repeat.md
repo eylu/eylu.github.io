@@ -22,9 +22,9 @@ category: JS
   <body>
     <pre>ng-init="name='David';checked=true;"</pre>
     <div ng-init="name='David';checked=true;">
-      <input type="text" ng-model="name" /> Your name is: \{\{name\}\}
+      <input type="text" ng-model="name" /> Your name is: { {name} }
       <hr>
-      <input type="checkbox" ng-model="checked" /> \{\{checked\}\}
+      <input type="checkbox" ng-model="checked" /> { {checked} }
     </div>
   </body>
 </html>
