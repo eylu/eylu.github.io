@@ -13,23 +13,23 @@ AngularJS是为了克服HTML在构建应用上的不足而设计的。HTML是一
 
 类库 -
 
-  类库是一些函数的集合，它能帮助你写WEB应用。起主导作用的是你的代码，由你来决定何时使用类库。类库有：jQuery等
+  &nbsp; 类库是一些函数的集合，它能帮助你写WEB应用。起主导作用的是你的代码，由你来决定何时使用类库。类库有：jQuery等
 
 框架 -
 
-  框架是一种特殊的、已经实现了的WEB应用，你只需要对它填充具体的业务逻辑。这里框架是起主导作用的，由它来根据具体的应用逻辑来调用你的代码。框架有：knockout、sproutcore等。
+  &nbsp; 框架是一种特殊的、已经实现了的WEB应用，你只需要对它填充具体的业务逻辑。这里框架是起主导作用的，由它来根据具体的应用逻辑来调用你的代码。框架有：knockout、sproutcore等。
 
 AngularJS使用了不同的方法，它尝试去补足HTML本身在构建应用方面的缺陷。AngularJS通过使用我们称为标识符(directives)的结构，让浏览器能够识别新的语法。例如：
 
-  使用双大括号{{}}语法进行数据绑定；
+  &nbsp; 使用双大括号{{}}语法进行数据绑定；
 
-  使用DOM控制结构来实现迭代或者隐藏DOM片段；
+  &nbsp; 使用DOM控制结构来实现迭代或者隐藏DOM片段；
 
-  支持表单和表单的验证；
+  &nbsp; 支持表单和表单的验证；
 
-  能将逻辑代码关联到相关的DOM元素上；
+  &nbsp; 能将逻辑代码关联到相关的DOM元素上；
 
-  能将HTML分组成可重用的组件。
+  &nbsp; 能将HTML分组成可重用的组件。
 
 端对端的解决方案
 
@@ -58,7 +58,7 @@ AngularJS的可爱之处
     <script type="text/javascript" src="/path/to/angular.js"></script>
   </head>
   <body>
-    <p>Hello {{'world'}}</p>
+    <p>Hello \{\{'world'\}\}</p>
   </body>
 </html>
 ```
@@ -67,7 +67,7 @@ AngularJS的可爱之处
 
 `<html ng-app>` ：当加载该页时，标记 ng-app 告诉 AngularJS 处理整个HTML页并引导应用；
 
-```{{'world'}}``` ：使用双大括号标记 {{}} 的内容是问候语中绑定的表达式，这个表达式是一个简单的字符串 ‘world’。
+`\{\{'world'\}\}` ：使用双大括号标记 {{}} 的内容是问候语中绑定的表达式，这个表达式是一个简单的字符串 ‘world’。
 
 ## 示例：双向数据绑定 ng-model
 
@@ -82,7 +82,7 @@ AngularJS的可爱之处
   <body>
     Your name: <input type="text" ng-model="yourname" placeholder="World">
     <hr>
-    Hello {{yourname || 'world'}}!
+    Hello \{\{yourname || 'world'\}\}!
   </body>
 </html>
 ```
@@ -93,13 +93,16 @@ AngularJS的可爱之处
 
 `ng-model="yourname"` ：文本输入指令 `<input ng-model="yourname" />` 绑定到一个叫 yourname 的模型变量；
 
-`{{yourname || 'world'}}` ：使用双大括号标记 {{}} 的内容是问候语中绑定的表达式，这个表达式是一个模型变量,如果没有值时，默认值是字符串 ‘world’。
+`\{\{yourname || 'world'\}\}` ：使用双大括号标记 {{}} 的内容是问候语中绑定的表达式，这个表达式是一个模型变量,如果没有值时，默认值是字符串 ‘world’。
 
-我们在文本域 `<input />` 中输入时，下面的 {{yourname}} 也会随之改变，不用自己去写监听事件，处理事件。
+我们在文本域 `<input />` 中输入时，下面的 \{\{yourname\}\} 也会随之改变，不用自己去写监听事件，处理事件。
 
 
 
 参考资料：
+
 [http://angularjs.cn/](http://angularjs.cn/)
+
 [http://docs.angularjs.cn/](http://docs.angularjs.cn/)
+
 [http://docs.angularjs.cn/api](http://docs.angularjs.cn/api)
