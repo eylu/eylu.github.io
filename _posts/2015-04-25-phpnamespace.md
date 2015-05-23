@@ -2,7 +2,7 @@
 layout: default
 title: PHP NameSpace
 date: 2015-4-25 09:26:47
-category: php
+category: PHP
 ---
 
 # 命名空间 NameSpace

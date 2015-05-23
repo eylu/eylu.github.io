@@ -2,7 +2,7 @@
 layout: default
 title: Centos 目录结构及说明
 date: 2014-08-25 15:18:00
-category: Linux
+category: LINUX
 ---
 
 CentOS的目录大体上可分为四类：管理类、用户类、应用程序类、信息类文件目录。

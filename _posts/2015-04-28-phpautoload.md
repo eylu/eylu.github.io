@@ -2,7 +2,7 @@
 layout: default
 title: PHP AutoLoad
 date: 2015-4-28 10:59:47
-category: php
+category: PHP
 ---
 
 # PHP 自动加载 AutoLoad
