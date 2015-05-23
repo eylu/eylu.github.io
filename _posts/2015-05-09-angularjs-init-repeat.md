@@ -49,7 +49,7 @@ category: JS
     <pre>ng-init="list = ['Chrome', 'Safari', 'Firefox', 'IE'] "</pre>
     <div ng-init="list = ['Chrome', 'Safari', 'Firefox', 'IE'] ">
       <input ng-model="list" ng-list> <br>
-      <pre>list=\{\{list\}\}</pre>
+      <pre>list={ {list} }</pre>
       <ol>
         <li ng-repeat="item in list">
           { {item} }
@@ -79,10 +79,10 @@ category: JS
     <pre>ng-init="list = [{name:'David',age:18},{name:'Lucy',age:20},{name:'Lilei',age:19}] "</pre>
     <div ng-init="list = [{name:'David',age:18},{name:'Lucy',age:20},{name:'Lilei',age:19}] ">
       <input ng-model="list" ng-list> <br>
-      <pre>list=\{\{list\}\}</pre>
+      <pre>list={ {list} }</pre>
       <ol>
         <li ng-repeat="person in list">
-          \{\{person.name\}\}'s age is: \{\{person.age\}\}
+          { {person.name} }'s age is: { {person.age} }
         </li>
       </ol>
     </div>
@@ -92,7 +92,7 @@ category: JS
 
 上例代码中，我们初始化 list ，每项是一个 Object ，每个 Object 有两个属性 name 和 age ，我们循环输出每个 Object 的属性值。
 
-`\{\{person.name\}\}` ：调用属性，显示属性值。
+`{ {person.name} }` ：调用属性，显示属性值。
 
 
 参考资料：
