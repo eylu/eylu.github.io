@@ -8,6 +8,7 @@ category: Mysql
 Mysql的主从复制至少是需要两个Mysql的服务，当然Mysql的服务是可以分布在不同的服务器上，也可以在一台服务器上启动多个服务。
 
 主192.168.1.102
+
 从192.168.1.104
 
 # 安装
@@ -18,6 +19,26 @@ Mysql的主从复制至少是需要两个Mysql的服务，当然Mysql的服务�
 
 # 配置
 
+### 0、配置 mysql 开机启动
+
+```
+[主/从服务器]# chkconfig --list
+```
+
+如果列表中没有mysqld这个，需要先用这个命令添加：
+
+```
+[主/从服务器]# chkconfig add mysqld
+```
+
+然后用这个命令设置开机启动：
+
+```
+[主/从服务器]# chkconfig mysqld on
+```
+
+最后确认一下是否设置成功
+
 ### 1、配置主服务器
 
 在主服务器上,设置一个从数据库的账户,使用REPLICATION SLAVE赋予权限
@@ -26,10 +47,8 @@ Mysql的主从复制至少是需要两个Mysql的服务，当然Mysql的服务�
 [主服务器]# mysql -uroot -proot
 [主服务器]mysql> CREATE USER 'slave001'@'192.168.1.104' IDENTIFIED BY '123456';
 [主服务器]mysql> GRANT REPLICATION SLAVE ON *.* TO 'slave001'@'192.168.1.104' IDENTIFIED BY '123456' WITH GRANT OPTION;
-
- 或者使用现有用户（不建议使用）
-
-[主服务器]mysql> GRANT REPLICATION SLAVE ON *.* TO 'root'@'192.168.1.104' IDENTIFIED BY 'root' WITH GRANT OPTION;
+或者使用现有用户（不建议使用）
+[主服务器]mysql> GRANT REPLICATION SLAVE ON *.* TO 'root'@'192.168.1.103' IDENTIFIED BY 'root' WITH GRANT OPTION;
 [主服务器]mysql> flush privileges; #刷新授权
 ```
 
@@ -107,20 +126,29 @@ Mysql的主从复制至少是需要两个Mysql的服务，当然Mysql的服务�
 [从服务器] mysql> slave stop;   #停止slave同步进程
 [从服务器] mysql> change master to master_host='192.168.1.102',master_user='slave001',master_password='123456',master_log_file='mysql-bin.000001',master_log_pos=107;
 [从服务器] mysql> slave start;    #开启slave同步进程
+```
 
 这时，配置已完成。
 
+## Error 还没完
 
 这时，一直报错，ERROR 1200 (HY000): The server is not configured as slave; fix in config file or with CHANGE MASTER TO
 
 于是查看日志
+
 1.查看 从服务器 上的Mysql报错日志，有这么一句：
+
 141009  6:06:29 [ERROR] Server id not set, will not start slave
+
 意思是，slave的server-id没有设置。
+
 那就奇怪了，我明明在配置文件里面指定了server-id的了，并且有重启mysql服务，难道不起效？
+
 分别在主从上执行命令“show variables like 'server_id';”。
 
 -------从机上面查看端口
+
+```
 mysql> SHOW VARIABLES LIKE 'server_id';
 +---------------+-------+
 | Variable_name | Value |
@@ -128,8 +156,13 @@ mysql> SHOW VARIABLES LIKE 'server_id';
 | server_id     | 0     |
 +---------------+-------+
 1 row in set (0.00 sec)
+```
+
 我就纳闷呢，本来设置的是2，此时却是0，
+
 -------主机上面查看
+
+```
 mysql> SHOW VARIABLES LIKE 'server_id';
 +---------------+-------+
 | Variable_name | Value |
@@ -137,10 +170,78 @@ mysql> SHOW VARIABLES LIKE 'server_id';
 | server_id     | 1     |
 +---------------+-------+
 1 row in set (0.00 sec)
-跟设置的一样。
-既然参数文件不生效，就试试在数据库命令里面设置：
-在从机 192.168.1.104 上执行命令
+```
+
+主服务器跟设置的一样，从服务器参数文件不生效！
+
+就试试在数据库命令里面设置：在从机 192.168.1.104 上执行命令
+
+```
 mysql > SET GLOBAL server_id=2;
+```
+
 再次在从机 192.168.1.104 上执行 slave start 和 show slave status，成功了。
+
 注意！！！由于“SET GLOBAL server_id=2;”命令会在mysql服务重启后丢失，所以一定要写到配置文件里面。
+
 但为什么我之前修改了my.cnf文件不起效？
+
+仔细查看配置文件 `/etc/my.cnf` ，发现从服务器的那段同步主库的配置写在了
+`[mysqld_safe]` 下面了，这样就错了。
+
+```
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+server-id=2
+log-bin=mysql-bin
+replicate-do-db=demodump
+replicate-ignore-db=mysql
+binlog_format=mixed
+master-host=192.168.1.102
+master-user=root
+master-password=root
+master-port=3306
+master-connect-retry=10
+```
+
+把配置修改一下，写在 [mysqld] 下，重启mysql服务。一切ok!
+
+```
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+server-id=2
+log-bin=mysql-bin
+replicate-do-db=demodump
+replicate-ignore-db=mysql
+binlog_format=mixed
+master-host=192.168.1.102
+master-user=root
+master-password=root
+master-port=3306
+master-connect-retry=10
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+```
+
+PS:  生命在于折腾
+
+PPS: 折腾的时候，要仔细一些！
+
+
