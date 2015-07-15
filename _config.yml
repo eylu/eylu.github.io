@@ -1,29 +1,15 @@
-# This is the default format.
-# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-# permalink: /:categories/:year/:month/:day/:title
-permalink: /:categories/:year/:month/:day/:title.html
-include: ['.htaccess']
-exclude: [".rvmrc", "README.md"]
-markdown: redcarpet
-highlights: pygments
-lsi: false
-timezone: Asia/Shanghai
-safe: false
+# Site settings
+title: 商城实战
+email: mole_zz@sina.com
+description: "商城实战教程"
+baseurl: ""
+url: "http://yourdomain.com"
+twitter_username: mole_zz
+github_username:  molezzz
 host: 0.0.0.0
 detach: true
-paginate: 20
-paginate_path: "/blog/page:num/"
-# auto: true # deprecated
-
-# Themes are encouraged to use these universal variables
-# so be sure to set them if your theme uses them.
-#
-url: http://eylu.github.io/
-title: Mark Down the Knowledge
-keywords: 科学家，CSS，JS，*nix，Ruby，PHP
-description: 在学习，在成长，在路上
-about: Looking for ...
-author:
-  name: Wang Eylu
-  email: wangeylu@gmail.com
-  github: eylu
+# Build settings
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
+permalink: pretty

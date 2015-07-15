@@ -1,32 +1,23 @@
 ---
 layout: default
-title: 主页
 ---
 
-{% for post in paginator.posts %}
-<div class="post-list">
-  <span class="cat">[{{ post.category }}]</span>
-  <a title="{{ post.title }}" href="{{ post.url }}">{{ post.title }}</a>
-</div>
-{% endfor %}
+<div class="home">
 
-<!-- Pagination links -->
-<ul data-am-widget="pagination" class="am-pagination am-pagination-select">
-  <li class="am-pagination-prev ">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path }}" class="previous">上一页</a>
-    {% else %}
-      <span class="previous">上一页</span>
-    {% endif %}
-  </li>
-  <li class="am-pagination-select">
-    {{ paginator.page }} / {{ paginator.total_pages }}
-  </li>
-  <li class="am-pagination-next ">
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path }}" class="next">下一页</a>
-    {% else %}
-      <span class="next ">下一页</span>
-    {% endif %}
-  </li>
-</ul>
+  <h1>实战课程</h1>
+
+  <ul class="posts">
+    {% for post in site.posts reversed %}
+      <li>
+        <!-- <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span> -->
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <section class="post-excerpt">
+            {{ post.excerpt }}
+        </section>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!--p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p-->
+
+</div>
