@@ -216,7 +216,7 @@ end
       @seller = Seller.find(session[:seller_id])
     else
       flash[:notice] = '请登陆'
-      redirect_to 'admins/login'
+      redirect_to '/admins/login'
     end
   end
 ```
@@ -234,7 +234,7 @@ end
 ```
 def logout
   session[:seller_id] = nil
-  redirect_to 'admins/login'
+  redirect_to '/admins/login'
 end
 ```
 
