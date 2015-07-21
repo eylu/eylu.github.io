@@ -202,7 +202,7 @@ end
 ```
   def self.auth(name, password)
     seller = Seller.where(name: name).first
-    !seller.nil? && password == seller.encrypt(password, seller.salt) ? seller : nil
+    !seller.nil? && seller.password_hash == seller.encrypt(password, seller.salt) ? seller : nil
   end
 ```
 
