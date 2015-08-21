@@ -67,7 +67,7 @@ excerpt: 增量式开发，需求分析，项目建立
 
 ``` bash
 rvm use 2.1@rails4
-rails new shop -d=mysql
+rails new shop -d=mysql --skip-bundle
 ```
 在新建项目时候使用`-d`参数，告诉Rails我们使用何种数据库。这里我们使用`mysql`作为应用的数据库。
 项目创建完成后，我们需要编辑`config/database.yml`，修改里面的配置参数，以便连接到数据库。
@@ -162,6 +162,7 @@ rails s
 这个命令启动了一个web服务器，并监听了本地的3000端口。如果你运行时候系统提示“ Address already in use”，那么可能另一个web服务器实例正在运行中。你可以切换到那个应用的终端窗口，按“Ctrl-C”终止那个服务器的运行。或者使用命令“killall ruby”命令，杀死ruby 的进程。
 
 好，现在打开浏览器，访问下刚创建的商城应用。我们需要在地址栏输上端口号“3000”和控制器的名字“products”：
+http://localhost:3000/products
 
 ![s_32_8](/images/s_32_8.png)
 
